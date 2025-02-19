@@ -17,6 +17,8 @@ Roblox Online Detector is an open-source GitHub repository that shows you how to
 ### Python Installation:
 [Link to Install Python](https://www.python.org/downloads/)
 
+Or run command prompt as admin and type python
+
 ### PyCharm Installation:
 [Link to Install PyCharm](https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=windows&code=PCC)
 
