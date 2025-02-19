@@ -26,8 +26,8 @@ def is_player_online(driver, user_id):
         else:
             return False  # Player is offline
 
-    except Exception as e:
-        print(f"Error: {e}")
+    except Exception:
+        # Catch the error silently and return False (offline)
         return False  # If the element is not found or any error occurs, assume offline
 
 
@@ -38,7 +38,7 @@ def monitor_player_status(user_id):
     options.headless = False  # Set to False to see the browser, True to hide it
 
     # Provide the correct path to chromedriver
-    service = Service(executable_path='C:/Users/Hudson/PycharmProjects/PythonProject/chromedriver.exe')  # Adjust path
+    service = Service(executable_path='C:/Users/hudso/PycharmProjects/PythonProject/chromedriver.exe')  # Adjust path
     driver = webdriver.Chrome(service=service, options=options)
 
     # First, go to the Roblox login page and wait for 60 seconds
@@ -51,7 +51,7 @@ def monitor_player_status(user_id):
     last_status = None  # Variable to remember the last status (online/offline)
 
     # Path to the video file (change this to the actual path of your video file)
-    video_file_path = r"C:\Users\Hudson\Downloads\(LOUD) screaming grandma meme earrape.mp3"  # Replace with the path to your video
+    video_file_path = r"C:\Users\hudso\Downloads\Annoying & Super Loud! (Alarm Sound Effect Ringtone & Alert Tone).mp3"  # Replace with the path to your video
 
     while True:
         current_status = is_player_online(driver, user_id)  # Check the current status
@@ -73,5 +73,4 @@ def monitor_player_status(user_id):
 
 
 # Example usage: Replace the user ID with the actual ID you want to monitor
-monitor_player_status(2919746103)  # Replace 4601317740 with the actual user ID of the player
-
+monitor_player_status(7503684415)  # Replace 1564756265 with the actual user ID of the player
