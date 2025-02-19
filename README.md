@@ -63,6 +63,13 @@ Paste the chromedriver.exe into this new path.
 
 ## Installing Pip on python
 
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+
+[^1]: This is the footnote.
+
+
+	
+
 install:
 
 	python get-pip.py
