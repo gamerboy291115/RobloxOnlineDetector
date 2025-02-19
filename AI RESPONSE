@@ -1,0 +1,77 @@
+import time
+import webbrowser
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+import os
+
+
+# Function to check if the player is online or in a game using Selenium
+def is_player_online(driver, user_id):
+    # Open the player's profile page
+    url = f"https://www.roblox.com/users/{user_id}/profile"
+    driver.get(url)
+
+    try:
+        # Attempt to locate the avatar icon (for online or game status)
+        presence_icon = driver.find_element(By.CSS_SELECTOR, 
+                                            "#profile-header-container > div > div > div > div.avatar.avatar-headshot-lg.card-plain.profile-avatar-image > a > span")
+        
+        # Check for the "game" class to determine if the player is in a game
+        if "game" in presence_icon.get_attribute("class"):
+            return True  # Player is in a game
+        elif "online" in presence_icon.get_attribute("class"):
+            return True  # Player is online (but not necessarily in a game)
+        else:
+            return False  # Player is offline
+        
+    except:
+        # If the element is not found, assume the player is online
+        print("Player is online (but no game icon found).")
+        return True  # If no element is found, the player is online but not in a game
+
+
+# Function to monitor player status
+def monitor_player_status(user_id):
+    # Set up Selenium WebDriver (Chrome)
+    options = Options()
+    options.headless = False  # Set to False to see the browser, True to hide it
+
+    # Provide the correct path to chromedriver
+    service = Service(executable_path='C:/Users/Hudson/PycharmProjects/PythonProject/chromedriver.exe')  # Adjust path
+    driver = webdriver.Chrome(service=service, options=options)
+
+    # First, go to the Roblox login page and wait for 60 seconds
+    driver.get("https://www.roblox.com/Login")
+
+    # Wait for 60 seconds while you're on the login page
+    print("Waiting for 60 seconds to allow login...")
+    time.sleep(50)  # Wait for 60 seconds
+
+    last_status = None  # Variable to remember the last status (online/offline)
+
+    # Path to the video file (change this to the actual path of your video file)
+    video_file_path = r"C:\Users\Hudson\Downloads\(LOUD) screaming grandma meme earrape.mp3"    # Replace with the path to your video
+
+    while True:
+        current_status = is_player_online(driver, user_id)  # Check the current status
+
+        # If the current status has changed from the last status, print a message
+        if current_status != last_status:
+            if current_status:
+                print(f"Player {user_id} is online now. Playing local video...")
+                # Open the local video file
+                if os.path.exists(video_file_path):
+                    webbrowser.open(f'file:///{video_file_path}')  # Open the video in the default media player
+                else:
+                    print("Video file not found!")
+            else:
+                print(f"Player {user_id} is offline now.")  # Player is offline
+
+        last_status = current_status  # Update the last status for future comparisons
+        time.sleep(10)  # Wait for 10 seconds before checking again
+
+
+# Example usage: Replace the user ID with the actual ID you want to monitor
+monitor_player_status(7430702838)  # Replace 4601317740 with the actual user ID of the player
