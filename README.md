@@ -96,7 +96,7 @@ Now, you need to add the RobloxOnlineDetector script to your PyCharm project fol
 
 **Time to add the script**
 
-Copy and paste the script in [Link to Script](https://github.com/gamerboy291115/RobloxOnlineDetector/blob/main/RobloxOnlineDetector) into the Python script you created
+Copy and paste the script in [Link to Script](https://github.com/gamerboy291115/RobloxOnlineDetector/blob/main/UpdatedRobloxOnlineDetector) into the Python script you created
 
 
 ### Execute the script
